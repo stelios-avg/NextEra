@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXT ERA – Media & Communication</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #000510;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #000510; }
+    ::-webkit-scrollbar-thumb { background: #00b8d4; border-radius: 3px; }
+
+    /* ── Utility glow colors ── */
+    :root {
+      --cyan:  #00e5ff;
+      --teal:  #00b8d4;
+      --dark:  #000510;
+      --glass: rgba(0, 180, 212, 0.08);
+    }
+
+    /* ══════════════════════════════════════
+       HEADER / NAV
+    ══════════════════════════════════════ */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.1rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 5, 16, 0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 229, 255, 0.12);
+    }
+
+    .logo-mark {
+      font-size: 1.75rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--cyan), var(--teal), #1a6b7c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .logo-sub {
+      font-size: 0.55rem;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+
+    .nav-link {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    .nav-link:hover {
+      color: var(--cyan);
+      text-shadow: 0 0 12px rgba(0,229,255,0.6);
+    }
+
+    .nav-cta {
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      padding: 0.45rem 1.2rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .nav-cta:hover {
+      background: rgba(0,229,255,0.1);
+      box-shadow: 0 0 20px rgba(0,229,255,0.35);
+    }
+
+    /* ══════════════════════════════════════
+       HERO SECTION
+    ══════════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 5rem;
+    }
+
+    /* Star-field background */
+    .stars {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 50% 50%, rgba(0,40,80,0.6) 0%, transparent 70%),
+        radial-gradient(ellipse at 80% 20%, rgba(0,100,130,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(0,60,100,0.1) 0%, transparent 50%),
+        #000510;
+    }
+    .stars::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(0,229,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 10%, rgba(0,229,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 35% 75%, rgba(0,229,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 88% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 55%, rgba(0,229,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5%  90%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 93% 30%, rgba(255,255,255,0.3) 0%, transparent 100%);
+    }
+
+    /* ── Hero Title ── */
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      letter-spacing: 6px;
+      line-height: 1;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-title .ne {
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--teal) 50%, #0a4f6a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(0,229,255,0.5));
+    }
+    .hero-subtitle {
+      font-size: 0.7rem;
+      letter-spacing: 6px;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ══════════════════════════════════════
+       GLOBE + CIRCULAR ICONS
+    ══════════════════════════════════════ */
+    .globe-wrapper {
+      position: relative;
+      width: min(600px, 90vw);
+      height: min(600px, 90vw);
+      margin: 0 auto;
+      z-index: 2;
+    }
+
+    /* ── Globe itself ── */
+    .globe {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44%;
+      height: 44%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 36%,
+        #0e4a5e 0%, #042030 40%, #010d1a 75%, #000510 100%);
+      box-shadow:
+        0 0 0 1px rgba(0,229,255,0.25),
+        0 0 40px 10px rgba(0,180,212,0.35),
+        0 0 80px 20px rgba(0,229,255,0.15),
+        inset 0 0 40px rgba(0,229,255,0.08);
+      animation: globePulse 4s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    /* Grid lines on globe */
+    .globe::before {
+      content: '';
+      position: absolute;
+      inset: -5%;
+      border-radius: 50%;
+      background:
+        repeating-linear-gradient(0deg,
+          transparent 0, transparent 11.5%,
+          rgba(0,229,255,0.15) 11.5%, rgba(0,229,255,0.15) 12.5%),
+        repeating-linear-gradient(90deg,
+          transparent 0, transparent 11.5%,
+          rgba(0,229,255,0.15) 11.5%, rgba(0,229,255,0.15) 12.5%);
+      mask-image: radial-gradient(circle, white 80%, transparent 100%);
+      -webkit-mask-image: radial-gradient(circle, white 80%, transparent 100%);
+    }
+
+    /* Glowing dot at top right of globe */
+    .globe::after {
+      content: '';
+      position: absolute;
+      top: 6%; right: 12%;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px 4px var(--cyan);
+      animation: dotBlink 2s ease-in-out infinite;
+    }
+
+    /* ── Orbital rings ── */
+    .ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      border-radius: 50%;
+      border: 1px solid rgba(0,229,255,0.18);
+    }
+
+    .ring-1 {
+      width: 54%; height: 54%;
+      transform: translate(-50%, -50%) rotateX(75deg);
+      animation: ringRotate1 12s linear infinite;
+    }
+    .ring-2 {
+      width: 64%; height: 64%;
+      transform: translate(-50%, -50%) rotateX(75deg) rotateZ(60deg);
+      animation: ringRotate2 18s linear infinite;
+    }
+    .ring-3 {
+      width: 74%; height: 74%;
+      transform: translate(-50%, -50%) rotateX(70deg) rotateZ(120deg);
+      animation: ringRotate3 25s linear infinite reverse;
+    }
+
+    /* orbit dot */
+    .ring-dot {
+      position: absolute;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 10px 3px var(--cyan);
+      top: -3px; left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* ── Outer glow halo ── */
+    .globe-halo {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%; height: 50%;
+      border-radius: 50%;
+      background: transparent;
+      box-shadow: 0 0 80px 40px rgba(0,180,212,0.12);
+    }
+
+    /* ── Circular service icons ── */
+    /*
+      6 icons at 60° increments, starting at top (-90°):
+      i=0 → -90°  → (50%, 5%)
+      i=1 → -30°  → (86%, 27%)
+      i=2 → +30°  → (86%, 73%)
+      i=3 → +90°  → (50%, 95%)
+      i=4 → +150° → (14%, 73%)
+      i=5 → +210° → (14%, 27%)
+    */
+    .service-icon {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      z-index: 5;
+      text-decoration: none;
+    }
+
+    .icon-btn {
+      width: 62px; height: 62px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(0,229,255,0.4);
+      background: rgba(0, 20, 40, 0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.3s, box-shadow 0.3s, background 0.3s, transform 0.3s;
+      position: relative;
+      overflow: visible;
+    }
+    .icon-btn svg {
+      width: 28px; height: 28px;
+      color: var(--cyan);
+      transition: filter 0.3s;
+    }
+
+    .service-icon:hover .icon-btn {
+      border-color: var(--cyan);
+      background: rgba(0,229,255,0.12);
+      box-shadow:
+        0 0 20px 4px rgba(0,229,255,0.5),
+        0 0 40px 8px rgba(0,229,255,0.2),
+        inset 0 0 20px rgba(0,229,255,0.08);
+      transform: scale(1.12);
+    }
+    .service-icon:hover .icon-btn svg {
+      filter: drop-shadow(0 0 6px var(--cyan));
+    }
+
+    .icon-label {
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      text-align: center;
+      max-width: 70px;
+      transition: color 0.3s;
+    }
+    .service-icon:hover .icon-label { color: var(--cyan); }
+
+    /* Connector lines from icon to globe */
+    .connector {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform-origin: 0 0;
+      height: 1px;
+      background: linear-gradient(to right, rgba(0,229,255,0.4), rgba(0,229,255,0.05));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════
+       SCROLL HINT
+    ══════════════════════════════════════ */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      z-index: 5;
+      opacity: 0.6;
+    }
+    .scroll-hint span {
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+    .scroll-arrow {
+      width: 24px; height: 24px;
+      border-right: 2px solid var(--cyan);
+      border-bottom: 2px solid var(--cyan);
+      transform: rotate(45deg);
+      animation: arrowBounce 1.6s ease-in-out infinite;
+    }
+
+    /* ══════════════════════════════════════
+       SECTION DIVIDER
+    ══════════════════════════════════════ */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(0,229,255,0.4), transparent);
+      margin: 0 2rem;
+    }
+
+    /* ══════════════════════════════════════
+       SERVICE SECTIONS
+    ══════════════════════════════════════ */
+    .service-section {
+      padding: 6rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at var(--glow-x, 50%) var(--glow-y, 50%),
+          rgba(0,180,212,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .service-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .service-section:nth-child(even) .service-inner {
+      direction: rtl;
+    }
+    .service-section:nth-child(even) .service-inner > * {
+      direction: ltr;
+    }
+
+    /* ── Service Card (text side) ── */
+    .service-card {
+      background: rgba(0, 15, 35, 0.6);
+      border: 1px solid rgba(0,229,255,0.2);
+      border-radius: 16px;
+      padding: 2.5rem;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+      /* For scroll-in animation */
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.7s ease, transform 0.7s ease, border-color 0.4s, box-shadow 0.4s;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--cyan), transparent);
+    }
+
+    .service-card:hover {
+      border-color: rgba(0,229,255,0.5);
+      box-shadow:
+        0 0 30px rgba(0,229,255,0.12),
+        0 0 60px rgba(0,229,255,0.06),
+        inset 0 0 30px rgba(0,229,255,0.04);
+      transform: translateY(-4px);
+    }
+
+    .service-number {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--teal);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .service-title {
+      font-size: clamp(1.3rem, 2.5vw, 2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .service-title .cyan { color: var(--cyan); }
+
+    .service-description {
+      font-size: 0.875rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 1.75rem;
+    }
+
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .service-list-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+
+    .list-check {
+      width: 22px; height: 22px;
+      min-width: 22px;
+      border-radius: 50%;
+      border: 1.5px solid var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,229,255,0.08);
+    }
+    .list-check svg {
+      width: 12px; height: 12px;
+      color: var(--cyan);
+    }
+
+    /* ── Image side ── */
+    .service-image-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,229,255,0.2);
+      box-shadow:
+        0 0 30px rgba(0,229,255,0.1),
+        0 0 60px rgba(0,229,255,0.05);
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
+    }
+    .service-image-wrap.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .service-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .service-image-wrap:hover img {
+      transform: scale(1.03);
+    }
+
+    /* ══════════════════════════════════════
+       CONTACT / FOOTER SECTION
+    ══════════════════════════════════════ */
+    #contact {
+      padding: 6rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0,180,212,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .contact-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(0,15,35,0.7);
+      border: 1px solid rgba(0,229,255,0.25);
+      border-radius: 20px;
+      padding: 3.5rem;
+      text-align: center;
+      backdrop-filter: blur(14px);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--cyan), transparent);
+    }
+
+    .contact-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      padding: 0.9rem 2.5rem;
+      border: 1.5px solid var(--cyan);
+      border-radius: 8px;
+      color: var(--cyan);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+    .cta-btn:hover {
+      background: rgba(0,229,255,0.12);
+      box-shadow: 0 0 30px rgba(0,229,255,0.4), 0 0 60px rgba(0,229,255,0.15);
+      transform: translateY(-2px);
+    }
+
+    /* Contact info */
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0,229,255,0.12);
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .contact-info-item svg {
+      color: var(--cyan);
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2rem;
+      border-top: 1px solid rgba(0,229,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer p {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 1px;
+    }
+
+    /* ── Footer service links ── */
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--cyan); }
+
+    /* ══════════════════════════════════════
+       DESKTOP NAV
+    ══════════════════════════════════════ */
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    /* ══════════════════════════════════════
+       MOBILE NAV HAMBURGER
+    ══════════════════════════════════════ */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 110;
+      background: none;
+      border: none;
+      outline: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px; height: 2px;
+      background: var(--cyan);
+      border-radius: 2px;
+      transition: transform 0.35s ease, opacity 0.25s ease;
+      transform-origin: center;
+    }
+    /* Animated X when open */
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 3, 12, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 105;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .mobile-nav.open {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mobile-nav a {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid rgba(0,229,255,0.06);
+      transition: color 0.25s, background 0.25s;
+    }
+    .mobile-nav a:hover,
+    .mobile-nav a:active {
+      color: var(--cyan);
+      background: rgba(0,229,255,0.05);
+    }
+    .mobile-nav .mobile-cta {
+      margin-top: 1.5rem;
+      padding: 0.75rem 2.5rem;
+      border: 1.5px solid var(--cyan);
+      border-radius: 6px;
+      color: var(--cyan);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      width: auto;
+      border-bottom: 1.5px solid var(--cyan);
+    }
+
+    /* ══════════════════════════════════════
+       KEYFRAMES
+    ══════════════════════════════════════ */
+    @keyframes globePulse {
+      0%, 100% { box-shadow: 0 0 40px 10px rgba(0,180,212,0.35), 0 0 80px 20px rgba(0,229,255,0.15); }
+      50%       { box-shadow: 0 0 60px 20px rgba(0,180,212,0.5),  0 0 120px 40px rgba(0,229,255,0.2); }
+    }
+
+    @keyframes ringRotate1 {
+      from { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
+      to   { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
+    }
+    @keyframes ringRotate2 {
+      from { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(60deg); }
+      to   { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(420deg); }
+    }
+    @keyframes ringRotate3 {
+      from { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(120deg); }
+      to   { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(-240deg); }
+    }
+
+    @keyframes dotBlink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    @keyframes arrowBounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%       { transform: rotate(45deg) translateY(6px); }
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .service-inner { gap: 2.5rem; }
+    }
+
+    @media (max-width: 900px) {
+      .service-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .service-section:nth-child(even) .service-inner {
+        direction: ltr;
+      }
+      .service-image-wrap { aspect-ratio: 4/3 !important; max-height: 360px; }
+    }
+
+    @media (max-width: 768px) {
+      /* Hide desktop nav, show burger */
+      .nav-links  { display: none !important; }
+      .hamburger  { display: flex; }
+
+      /* Hero adjustments */
+      #hero { padding-top: 4.5rem; padding-bottom: 4rem; gap: 0.5rem; }
+
+      .globe-wrapper {
+        width: min(380px, 88vw);
+        height: min(380px, 88vw);
+      }
+      .icon-btn      { width: 48px; height: 48px; }
+      .icon-btn svg  { width: 20px; height: 20px; }
+      .icon-label    { font-size: 0.46rem; max-width: 56px; letter-spacing: 1px; }
+
+      .service-section { padding: 4rem 1.25rem; }
+      .service-card { padding: 2rem 1.5rem; }
+    }
+
+    @media (max-width: 520px) {
+      .site-header { padding: 0.85rem 1rem; }
+
+      /* On very small screens the circle icons clip — shrink wrapper more */
+      .globe-wrapper {
+        width: 84vw;
+        height: 84vw;
+        max-width: 320px;
+        max-height: 320px;
+      }
+      .icon-btn     { width: 42px; height: 42px; }
+      .icon-btn svg { width: 18px; height: 18px; }
+      .icon-label   { font-size: 0.42rem; }
+
+      .service-section  { padding: 3rem 1rem; }
+      .service-card     { padding: 1.5rem 1.25rem; }
+      .contact-card     { padding: 2rem 1.25rem; }
+      .service-title    { font-size: 1.4rem !important; }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+      }
+      .footer-links { gap: 1rem; }
+    }
+
+    /* Particle dots (decorative) */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: floatParticle linear infinite;
+      opacity: 0;
+    }
+    @keyframes floatParticle {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      10%  { opacity: 0.8; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-120px) translateX(var(--tx, 30px)); opacity: 0; }
+    }
+
+    /* Section badge */
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border: 1px solid rgba(0,229,255,0.3);
+      border-radius: 100px;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      color: var(--teal);
+      font-weight: 700;
+      text-transform: uppercase;
+      background: rgba(0,229,255,0.06);
+      margin-bottom: 1rem;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 6px var(--cyan);
+      animation: dotBlink 1.5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════ -->
+<!--              HEADER / NAV             -->
+<!-- ══════════════════════════════════════ -->
+<header class="site-header">
+  <a href="#hero" style="text-decoration:none;display:flex;align-items:center;">
+    <img src="assets/logo_nobg.png" alt="NEXT ERA logo"
+         style="height:52px;width:auto;object-fit:contain;display:block;" />
+  </a>
+
+  <nav class="nav-links">
+    <a href="#strategy"  class="nav-link">Στρατηγική</a>
+    <a href="#social"    class="nav-link">Social</a>
+    <a href="#corporate" class="nav-link">Επικοινωνία</a>
+    <a href="#politics"  class="nav-link">Πολιτική</a>
+    <a href="#web"       class="nav-link">Web</a>
+    <a href="#drone"     class="nav-link">Drone</a>
+    <a href="#contact"   class="nav-cta">Επικοινωνία</a>
+  </nav>
+
+  <!-- Hamburger — visible only on mobile via CSS -->
+  <button class="hamburger" id="hamburger" aria-label="Άνοιγμα μενού" aria-expanded="false" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Full-screen Mobile Nav -->
+<nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <a href="#strategy"  onclick="toggleMobileNav()">Στρατηγική</a>
+  <a href="#social"    onclick="toggleMobileNav()">Social Media</a>
+  <a href="#corporate" onclick="toggleMobileNav()">Εταιρική Επικοινωνία</a>
+  <a href="#politics"  onclick="toggleMobileNav()">Πολιτική</a>
+  <a href="#web"       onclick="toggleMobileNav()">Web</a>
+  <a href="#drone"     onclick="toggleMobileNav()">Drone</a>
+  <a href="#contact"   class="mobile-cta" onclick="toggleMobileNav()">Επικοινωνία →</a>
+</nav>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--              HERO SECTION             -->
+<!-- ══════════════════════════════════════ -->
+<section id="hero">
+  <div class="stars"></div>
+
+  <!-- Hero headline -->
+  <div style="position:relative;z-index:2;text-align:center;margin-bottom:0.5rem;">
+    <p style="font-size:0.7rem;letter-spacing:5px;color:var(--teal);font-weight:700;text-transform:uppercase;margin-bottom:0.6rem;">
+      <span class="badge-dot" style="display:inline-block;margin-right:8px;vertical-align:middle;"></span>
+      Media &amp; Communication Agency
+    </p>
+    <h1 class="hero-title">
+      <span class="ne">NEXT</span>&nbsp;<span style="color:#fff;">ERA</span>
+    </h1>
+    <p class="hero-subtitle">media &amp; communication</p>
+  </div>
+
+  <!-- Globe + Icons -->
+  <div class="globe-wrapper" id="globeWrapper">
+
+    <!-- Orbital rings -->
+    <div class="ring ring-1"><div class="ring-dot"></div></div>
+    <div class="ring ring-2"><div class="ring-dot"></div></div>
+    <div class="ring ring-3"><div class="ring-dot"></div></div>
+
+    <!-- Outer halo -->
+    <div class="globe-halo"></div>
+
+    <!-- Globe -->
+    <div class="globe"></div>
+
+    <!-- 6 Connector lines (drawn via JS) -->
+    <canvas id="connectorCanvas" style="position:absolute;inset:0;pointer-events:none;z-index:3;"></canvas>
+
+    <!-- ── Service Icons ── -->
+    <!-- Positions (left%, top%) for 6 icons in a circle, r≈42% of wrapper -->
+    <!-- i=0 -90°: (50%, 5%)  -->
+    <a href="#strategy" class="service-icon" style="left:50%;top:5%;">
+      <div class="icon-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <span class="icon-label">Στρατηγική</span>
+    </a>
+
+    <!-- i=1 -30°: (86.4%, 27%) -->
+    <a href="#social" class="service-icon" style="left:87%;top:27%;">
+      <div class="icon-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 2H3v16h5v4l4-4h9V2z"/>
+          <line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="13" y2="13"/>
+        </svg>
+      </div>
+      <span class="icon-label">Social Media</span>
+    </a>
+
+    <!-- i=2 +30°: (86.4%, 73%) -->
+    <a href="#corporate" class="service-icon" style="left:87%;top:73%;">
+      <div class="icon-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <span class="icon-label">Επικοινωνία</span>
+    </a>
+
+    <!-- i=3 +90°: (50%, 95%) -->
+    <a href="#politics" class="service-icon" style="left:50%;top:95%;">
+      <div class="icon-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <span class="icon-label">Πολιτική</span>
+    </a>
+
+    <!-- i=4 +150°: (13.6%, 73%) -->
+    <a href="#web" class="service-icon" style="left:13%;top:73%;">
+      <div class="icon-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <line x1="3" y1="9" x2="21" y2="9"/>
+          <line x1="9" y1="21" x2="9" y2="9"/>
+        </svg>
+      </div>
+      <span class="icon-label">Web</span>
+    </a>
+
+    <!-- i=5 +210°: (13.6%, 27%) -->
+    <a href="#drone" class="service-icon" style="left:13%;top:27%;">
+      <div class="icon-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l2.5 5h5l-4 3.5 1.5 5.5L12 13l-5 3 1.5-5.5L4.5 7h5z"/>
+          <circle cx="12" cy="14" r="2"/>
+          <line x1="12" y1="16" x2="12" y2="20"/>
+          <line x1="8" y1="20" x2="16" y2="20"/>
+        </svg>
+      </div>
+      <span class="icon-label">Drone</span>
+    </a>
+
+  </div><!-- /.globe-wrapper -->
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--         SECTION 1 – STRATEGY          -->
+<!-- ══════════════════════════════════════ -->
+<div class="section-divider"></div>
+
+<section id="strategy" class="service-section" style="--glow-x:20%;--glow-y:50%;">
+  <div class="service-inner">
+    <div class="service-card">
+      <div class="section-badge"><span class="badge-dot"></span>01 / 06</div>
+      <div class="service-number">Ψηφιακή Στρατηγική</div>
+      <h2 class="service-title">
+        ΣΤΡΑΤΗΓΙΚΗ<br><span class="cyan">ΨΗΦΙΑΚΗΣ</span><br>ΠΑΡΟΥΣΙΑΣ
+      </h2>
+      <p class="service-description">
+        Η εταιρία μας παρέχει ολοκληρωμένες υπηρεσίες ψηφιακής επικοινωνίας, δημιουργώντας
+        περιεχόμενο που ενισχύει την εικόνα και τη σχέση κάθε οργανισμού με το κοινό του.
+      </p>
+      <ul class="service-list">
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Ανάλυση κοινού
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Διαμόρφωση στρατηγικών στόχων
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Διαχείριση και υλοποίηση εκστρατειών
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Ανάπτυξη εταιρικής ταυτότητας
+        </li>
+      </ul>
+    </div>
+    <div class="service-image-wrap" style="aspect-ratio:3/4;">
+      <img src="assets/enotita_1-10225b51-30c6-43a7-adcd-6615179d7936.png" alt="Στρατηγική Ψηφιακής Παρουσίας" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--       SECTION 2 – SOCIAL MEDIA        -->
+<!-- ══════════════════════════════════════ -->
+<div class="section-divider"></div>
+
+<section id="social" class="service-section" style="--glow-x:80%;--glow-y:50%;">
+  <div class="service-inner">
+    <div class="service-card">
+      <div class="section-badge"><span class="badge-dot"></span>02 / 06</div>
+      <div class="service-number">Social Media</div>
+      <h2 class="service-title">
+        ΔΙΑΧΕΙΡΙΣΗ<br><span class="cyan">SOCIAL</span><br>MEDIA
+      </h2>
+      <p class="service-description">
+        Αναλαμβάνουμε την ολοκληρωμένη διαχείριση των λογαριασμών σας στα Social Media,
+        δημιουργώντας περιεχόμενο που ενισχύει την εικόνα και αυξάνει την αλληλεπίδραση με το κοινό.
+      </p>
+      <ul class="service-list">
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Δημιουργία περιεχομένου
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Αύξηση αναγνωρισιμότητας
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Ενίσχυση πωλήσεων
+        </li>
+      </ul>
+    </div>
+    <div class="service-image-wrap" style="aspect-ratio:3/4;">
+      <img src="assets/enotita2-5a9238c4-a323-4145-b971-df199059fc02.png" alt="Διαχείριση Social Media" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--     SECTION 3 – CORPORATE COMMS       -->
+<!-- ══════════════════════════════════════ -->
+<div class="section-divider"></div>
+
+<section id="corporate" class="service-section" style="--glow-x:20%;--glow-y:50%;">
+  <div class="service-inner">
+    <div class="service-card">
+      <div class="section-badge"><span class="badge-dot"></span>03 / 06</div>
+      <div class="service-number">Εταιρική Επικοινωνία</div>
+      <h2 class="service-title">
+        ΕΤΑΙΡΙΚΗ<br><span class="cyan">ΕΠΙΚΟΙΝΩΝΙΑ</span>
+      </h2>
+      <p class="service-description">
+        Στηρίζουμε την επιχείρησή σας μέσα από στοχευμένη εταιρική επικοινωνία που χτίζει
+        εμπιστοσύνη, ενισχύει την αξιοπιστία και προβάλλει αποτελεσματικά την ταυτότητά σας.
+      </p>
+      <ul class="service-list">
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Σύνταξη δελτίων τύπου
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Υποστήριξη στην επικοινωνία
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Ενίσχυση δημόσιας εικόνας
+        </li>
+      </ul>
+    </div>
+    <div class="service-image-wrap" style="aspect-ratio:3/4;">
+      <img src="assets/enotita3-55bd023f-9061-4419-8de0-26da3c1617da.png" alt="Εταιρική Επικοινωνία" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--     SECTION 4 – POLITICAL CAMPAIGNS   -->
+<!-- ══════════════════════════════════════ -->
+<div class="section-divider"></div>
+
+<section id="politics" class="service-section" style="--glow-x:80%;--glow-y:50%;">
+  <div class="service-inner">
+    <div class="service-card">
+      <div class="section-badge"><span class="badge-dot"></span>04 / 06</div>
+      <div class="service-number">Πολιτικές Εκστρατείες</div>
+      <h2 class="service-title">
+        ΥΠΟΣΤΗΡΙΞΗ<br><span class="cyan">ΠΟΛΙΤΙΚΩΝ</span><br>ΕΚΣΤΡΑΤΕΙΩΝ
+      </h2>
+      <p class="service-description">
+        Στηρίζουμε πολιτικούς, συνδυασμούς και οργανισμούς σε κάθε στάδιο της εκστρατείας,
+        με στρατηγική προσέγγιση και στοχευμένη επικοινωνία που χτίζει εμπιστοσύνη.
+      </p>
+      <ul class="service-list">
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Στρατηγικός σχεδιασμός
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Παραγωγή υλικού για Social Media
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Οργάνωση και προβολή δράσεων
+        </li>
+      </ul>
+    </div>
+    <div class="service-image-wrap" style="aspect-ratio:3/4;">
+      <img src="assets/enotita4-915b5715-ae18-4993-873d-3873e69f2281.png" alt="Υποστήριξη Πολιτικών Εκστρατειών" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--     SECTION 5 – WEB DEVELOPMENT       -->
+<!-- ══════════════════════════════════════ -->
+<div class="section-divider"></div>
+
+<section id="web" class="service-section" style="--glow-x:20%;--glow-y:50%;">
+  <div class="service-inner">
+    <div class="service-card">
+      <div class="section-badge"><span class="badge-dot"></span>05 / 06</div>
+      <div class="service-number">Ανάπτυξη Ιστοσελίδων</div>
+      <h2 class="service-title">
+        ΑΝΑΠΤΥΞΗ<br><span class="cyan">ΙΣΤΟΣΕΛΙΔΩΝ</span>
+      </h2>
+      <p class="service-description">
+        Δημιουργούμε σύγχρονες, λειτουργικές και ασφαλείς ιστοσελίδες που ενισχύουν την
+        online παρουσία της επιχείρησής σας και προσφέρουν εξαιρετική εμπειρία στον επισκέπτη.
+      </p>
+      <ul class="service-list">
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Σχεδιασμός διαδικτυακής παρουσίας
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Αναβάθμιση περιεχομένου
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Τεχνική υποστήριξη
+        </li>
+      </ul>
+    </div>
+    <div class="service-image-wrap" style="aspect-ratio:3/4;">
+      <img src="assets/enotita5-47705130-b60f-4750-9028-f1bd7aa865fb.png" alt="Ανάπτυξη Ιστοσελίδων" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--       SECTION 6 – DRONE SERVICES      -->
+<!-- ══════════════════════════════════════ -->
+<div class="section-divider"></div>
+
+<section id="drone" class="service-section" style="--glow-x:80%;--glow-y:50%;">
+  <div class="service-inner">
+    <div class="service-card">
+      <div class="section-badge"><span class="badge-dot"></span>06 / 06</div>
+      <div class="service-number">Drone Services</div>
+      <h2 class="service-title">
+        ΥΠΗΡΕΣΙΕΣ<br><span class="cyan">DRONE</span>
+      </h2>
+      <p class="service-description">
+        Αξιοποιούμε την τεχνολογία drone για μοναδικές εναέριες λήψεις υψηλής ανάλυσης που
+        αναδεικνύουν κάθε λεπτομέρεια, ενισχύουν την εικόνα και προσδίδουν επαγγελματισμό.
+      </p>
+      <ul class="service-list">
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Εναέρια βιντεοσκόπηση
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Εναέρια φωτογράφιση
+        </li>
+        <li class="service-list-item">
+          <span class="list-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          Παραγωγή υλικού για Social Media
+        </li>
+      </ul>
+    </div>
+    <div class="service-image-wrap" style="aspect-ratio:3/4;">
+      <img src="assets/enotita6-71067bd1-0d72-4e72-abc3-7dbb9b6bbe98.png" alt="Υπηρεσίες Drone" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--         CONTACT / CTA SECTION         -->
+<!-- ══════════════════════════════════════ -->
+<div class="section-divider"></div>
+
+<section id="contact">
+  <div class="contact-card">
+    <p style="font-size:0.65rem;letter-spacing:4px;color:var(--teal);font-weight:700;text-transform:uppercase;margin-bottom:0.8rem;">
+      <span class="badge-dot" style="display:inline-block;margin-right:8px;vertical-align:middle;"></span>
+      Ας συνεργαστούμε
+    </p>
+    <h2 class="contact-title">Έτοιμοι για την<br>επόμενη εποχή;</h2>
+    <p style="font-size:0.9rem;color:rgba(255,255,255,0.55);max-width:500px;margin:0 auto;line-height:1.75;">
+      Επικοινωνήστε μαζί μας και μάθετε πώς μπορούμε να αναβαθμίσουμε την ψηφιακή παρουσία
+      και επικοινωνία σας.
+    </p>
+
+    <a href="mailto:info@nextera.gr" class="cta-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Επικοινωνήστε μαζί μας
+    </a>
+
+    <div class="contact-info">
+      <div class="contact-info-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+        </svg>
+        info@nextera.gr
+      </div>
+      <div class="contact-info-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.85a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/>
+        </svg>
+        +30 210 000 0000
+      </div>
+      <div class="contact-info-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        Αθήνα, Ελλάδα
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--               FOOTER                  -->
+<!-- ══════════════════════════════════════ -->
+<footer>
+  <div>
+    <img src="assets/logo_nobg.png" alt="NEXT ERA logo"
+         style="height:44px;width:auto;object-fit:contain;display:block;" />
+  </div>
+
+  <nav class="footer-links">
+    <a href="#strategy">Στρατηγική</a>
+    <a href="#social">Social Media</a>
+    <a href="#corporate">Επικοινωνία</a>
+    <a href="#politics">Πολιτική</a>
+    <a href="#web">Web</a>
+    <a href="#drone">Drone</a>
+  </nav>
+
+  <p>© 2026 Next Era Media &amp; Communication. All rights reserved.</p>
+</footer>
+
+
+<!-- ══════════════════════════════════════ -->
+<!--            JAVASCRIPT                 -->
+<!-- ══════════════════════════════════════ -->
+<script>
+  /* ── Mobile Nav ── */
+  function toggleMobileNav() {
+    const nav       = document.getElementById('mobileNav');
+    const burger    = document.getElementById('hamburger');
+    const isOpen    = nav.classList.toggle('open');
+
+    burger.classList.toggle('open', isOpen);
+    burger.setAttribute('aria-expanded', isOpen);
+    nav.setAttribute('aria-hidden', !isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  /* Close mobile nav on Escape key */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('mobileNav').classList.contains('open')) {
+      toggleMobileNav();
+    }
+  });
+
+  /* ── Connector canvas (lines from globe center to icons) ── */
+  function drawConnectors() {
+    const wrapper = document.getElementById('globeWrapper');
+    const canvas  = document.getElementById('connectorCanvas');
+    if (!wrapper || !canvas) return;
+
+    const W = wrapper.offsetWidth;
+    const H = wrapper.offsetHeight;
+    canvas.width  = W;
+    canvas.height = H;
+
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, W, H);
+
+    const cx = W / 2;
+    const cy = H / 2;
+    const globeR = (W * 0.44) / 2; // globe radius
+
+    const icons = wrapper.querySelectorAll('.service-icon');
+    icons.forEach(icon => {
+      const ix = (parseFloat(icon.style.left) / 100) * W;
+      const iy = (parseFloat(icon.style.top)  / 100) * H;
+
+      // Direction from center to icon
+      const dx = ix - cx;
+      const dy = iy - cy;
+      const dist = Math.hypot(dx, dy);
+      const nx = dx / dist;
+      const ny = dy / dist;
+
+      // Start on globe surface
+      const startX = cx + nx * globeR;
+      const startY = cy + ny * globeR;
+
+      // End slightly before icon center
+      const endX = ix - nx * 32;
+      const endY = iy - ny * 32;
+
+      const grad = ctx.createLinearGradient(startX, startY, endX, endY);
+      grad.addColorStop(0, 'rgba(0,229,255,0.5)');
+      grad.addColorStop(1, 'rgba(0,229,255,0.05)');
+
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+      ctx.lineTo(endX, endY);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 6]);
+      ctx.stroke();
+    });
+  }
+
+  window.addEventListener('load',   drawConnectors);
+  window.addEventListener('resize', drawConnectors);
+
+  /* ── Intersection Observer for scroll animations ── */
+  const animTargets = document.querySelectorAll('.service-card, .service-image-wrap');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  animTargets.forEach(el => observer.observe(el));
+
+  /* ── Subtle particle emitter in hero ── */
+  (function spawnParticles() {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+
+    function emit() {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 3 + 1;
+      const x = Math.random() * 100;
+      const duration = Math.random() * 6 + 5;
+      const tx = (Math.random() - 0.5) * 60;
+
+      p.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${x}%; bottom:${Math.random() * 40}%;
+        background: ${Math.random() > 0.5 ? '#00e5ff' : 'rgba(255,255,255,0.7)'};
+        box-shadow: 0 0 ${size*3}px ${Math.random() > 0.5 ? '#00e5ff' : 'rgba(255,255,255,0.5)'};
+        animation-duration: ${duration}s;
+        animation-delay: ${Math.random() * 3}s;
+        --tx: ${tx}px;
+      `;
+      hero.appendChild(p);
+      setTimeout(() => p.remove(), (duration + 3) * 1000);
+    }
+
+    setInterval(emit, 400);
+  })();
+
+  /* ── Active nav highlight on scroll ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links .nav-link');
+
+  function updateActiveNav() {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) {
+        current = sec.id;
+      }
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === '#' + current
+        ? 'var(--cyan)'
+        : '';
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+</script>
+
+</body>
+</html>

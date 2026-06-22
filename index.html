@@ -402,19 +402,8 @@
     }
 
     .service-inner {
-      max-width: 1200px;
+      max-width: 800px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .service-section:nth-child(even) .service-inner {
-      direction: rtl;
-    }
-    .service-section:nth-child(even) .service-inner > * {
-      direction: ltr;
     }
 
     /* ── Service Card (text side) ── */
@@ -508,34 +497,6 @@
       color: var(--cyan);
     }
 
-    /* ── Image side ── */
-    .service-image-wrap {
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(0,229,255,0.2);
-      box-shadow:
-        0 0 30px rgba(0,229,255,0.1),
-        0 0 60px rgba(0,229,255,0.05);
-      position: relative;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
-    }
-    .service-image-wrap.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .service-image-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .service-image-wrap:hover img {
-      transform: scale(1.03);
-    }
-
     /* ══════════════════════════════════════
        CONTACT / FOOTER SECTION
     ══════════════════════════════════════ */
@@ -606,6 +567,17 @@
       transform: translateY(-2px);
     }
 
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .contact-actions .cta-btn {
+      margin-top: 0;
+    }
+
     /* Contact info */
     .contact-info {
       display: flex;
@@ -622,6 +594,11 @@
       gap: 0.6rem;
       font-size: 0.8rem;
       color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a.contact-info-item:hover {
+      color: var(--cyan);
     }
     .contact-info-item svg {
       color: var(--cyan);
@@ -782,19 +759,10 @@
     /* ══════════════════════════════════════
        RESPONSIVE
     ══════════════════════════════════════ */
-    @media (max-width: 1024px) {
-      .service-inner { gap: 2.5rem; }
-    }
-
     @media (max-width: 900px) {
       .service-inner {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        max-width: 100%;
       }
-      .service-section:nth-child(even) .service-inner {
-        direction: ltr;
-      }
-      .service-image-wrap { aspect-ratio: 4/3 !important; max-height: 360px; }
     }
 
     @media (max-width: 768px) {
@@ -1081,9 +1049,6 @@
         </li>
       </ul>
     </div>
-    <div class="service-image-wrap" style="aspect-ratio:3/4;">
-      <img src="assets/enotita_1-10225b51-30c6-43a7-adcd-6615179d7936.png" alt="Στρατηγική Ψηφιακής Παρουσίας" loading="lazy" />
-    </div>
   </div>
 </section>
 
@@ -1119,9 +1084,6 @@
           Ενίσχυση πωλήσεων
         </li>
       </ul>
-    </div>
-    <div class="service-image-wrap" style="aspect-ratio:3/4;">
-      <img src="assets/enotita2-5a9238c4-a323-4145-b971-df199059fc02.png" alt="Διαχείριση Social Media" loading="lazy" />
     </div>
   </div>
 </section>
@@ -1159,9 +1121,6 @@
         </li>
       </ul>
     </div>
-    <div class="service-image-wrap" style="aspect-ratio:3/4;">
-      <img src="assets/enotita3-55bd023f-9061-4419-8de0-26da3c1617da.png" alt="Εταιρική Επικοινωνία" loading="lazy" />
-    </div>
   </div>
 </section>
 
@@ -1197,9 +1156,6 @@
           Οργάνωση και προβολή δράσεων
         </li>
       </ul>
-    </div>
-    <div class="service-image-wrap" style="aspect-ratio:3/4;">
-      <img src="assets/enotita4-915b5715-ae18-4993-873d-3873e69f2281.png" alt="Υποστήριξη Πολιτικών Εκστρατειών" loading="lazy" />
     </div>
   </div>
 </section>
@@ -1237,9 +1193,6 @@
         </li>
       </ul>
     </div>
-    <div class="service-image-wrap" style="aspect-ratio:3/4;">
-      <img src="assets/enotita5-47705130-b60f-4750-9028-f1bd7aa865fb.png" alt="Ανάπτυξη Ιστοσελίδων" loading="lazy" />
-    </div>
   </div>
 </section>
 
@@ -1276,9 +1229,6 @@
         </li>
       </ul>
     </div>
-    <div class="service-image-wrap" style="aspect-ratio:3/4;">
-      <img src="assets/enotita6-71067bd1-0d72-4e72-abc3-7dbb9b6bbe98.png" alt="Υπηρεσίες Drone" loading="lazy" />
-    </div>
   </div>
 </section>
 
@@ -1300,29 +1250,23 @@
       και επικοινωνία σας.
     </p>
 
-    <a href="mailto:NextEra-Media@outlook.com" class="cta-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Επικοινωνήστε μαζί μας
-    </a>
+    <div class="contact-actions">
+      <a href="tel:+35796383474" class="cta-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.85a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+        Κλήση τώρα
+      </a>
+      <a href="mailto:NextEra-Media@outlook.com" class="cta-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Αποστολή email
+      </a>
+    </div>
 
     <div class="contact-info">
       <div class="contact-info-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-        </svg>
-        NextEra-Media@outlook.com
-      </div>
-      <div class="contact-info-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.85a16 16 0 0 0 6 6l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/>
-        </svg>
-        +357 96383474
-      </div>
-      <div class="contact-info-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
         </svg>
-       Λευκωσίας, Κύπρος
+        Λευκωσίας, Κύπρος
       </div>
     </div>
   </div>
@@ -1430,7 +1374,7 @@
   window.addEventListener('resize', drawConnectors);
 
   /* ── Intersection Observer for scroll animations ── */
-  const animTargets = document.querySelectorAll('.service-card, .service-image-wrap');
+  const animTargets = document.querySelectorAll('.service-card');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

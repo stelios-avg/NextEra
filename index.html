@@ -267,6 +267,103 @@
       box-shadow: 0 0 80px 40px rgba(0,180,212,0.12);
     }
 
+    /* ── Center logo button (opens flyer) ── */
+    .globe-logo-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40%; height: 40%;
+      z-index: 6;
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      /* Clip to a perfect circle — removes all square corners of the PNG */
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* screen blend makes the black background of the PNG invisible */
+      mix-blend-mode: screen;
+      animation: logoFloat 5s ease-in-out infinite;
+    }
+    .globe-logo-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Boost contrast so any near-black fringe fully disappears */
+      filter: brightness(1.15) contrast(1.1) drop-shadow(0 0 10px rgba(0,229,255,0.5));
+      transition: filter 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+    }
+    .globe-logo-btn:hover img {
+      filter: brightness(1.25) contrast(1.1) drop-shadow(0 0 20px rgba(0,229,255,0.9));
+      transform: scale(1.08);
+    }
+    @keyframes logoFloat {
+      0%, 100% { transform: translate(-50%, -51%); }
+      50%       { transform: translate(-50%, -49%); }
+    }
+
+    /* ══════════════════════════════════════
+       FLYER LIGHTBOX
+    ══════════════════════════════════════ */
+    .flyer-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: rgba(0, 5, 16, 0.92);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .flyer-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .flyer-overlay img {
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 12px;
+      border: 1px solid rgba(0,229,255,0.3);
+      box-shadow: 0 0 60px rgba(0,229,255,0.25), 0 0 120px rgba(0,180,212,0.15);
+      transform: scale(0.15);
+      opacity: 0;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+      cursor: default;
+    }
+    .flyer-overlay.open img {
+      transform: scale(1);
+      opacity: 1;
+    }
+    .flyer-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,229,255,0.4);
+      background: rgba(0,20,40,0.75);
+      color: var(--cyan);
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+    .flyer-close:hover {
+      background: rgba(0,229,255,0.15);
+      box-shadow: 0 0 20px rgba(0,229,255,0.4);
+      transform: scale(1.08);
+    }
+
     /* ── Circular service icons ── */
     /*
       6 icons at 60° increments, starting at top (-90°):
@@ -923,6 +1020,11 @@
     <!-- Globe -->
     <div class="globe"></div>
 
+    <!-- Center logo — opens flyer with zoom animation -->
+    <button class="globe-logo-btn" onclick="openFlyer()" aria-label="Άνοιγμα flyer">
+      <img src="assets/newlogo.png" alt="NEXT ERA" />
+    </button>
+
     <!-- 6 Connector lines (drawn via JS) -->
     <canvas id="connectorCanvas" style="position:absolute;inset:0;pointer-events:none;z-index:3;"></canvas>
 
@@ -1296,6 +1398,15 @@
 
 
 <!-- ══════════════════════════════════════ -->
+<!--            FLYER LIGHTBOX             -->
+<!-- ══════════════════════════════════════ -->
+<div class="flyer-overlay" id="flyerOverlay" onclick="closeFlyer(event)">
+  <button class="flyer-close" onclick="closeFlyer(event)" aria-label="Κλείσιμο">&times;</button>
+  <img src="assets/Geniko%20flyer.jpg" alt="Next Era flyer" />
+</div>
+
+
+<!-- ══════════════════════════════════════ -->
 <!--            JAVASCRIPT                 -->
 <!-- ══════════════════════════════════════ -->
 <script>
@@ -1313,10 +1424,26 @@
 
   /* Close mobile nav on Escape key */
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && document.getElementById('mobileNav').classList.contains('open')) {
+    if (e.key !== 'Escape') return;
+    if (document.getElementById('mobileNav').classList.contains('open')) {
       toggleMobileNav();
     }
+    if (document.getElementById('flyerOverlay').classList.contains('open')) {
+      closeFlyer();
+    }
   });
+
+  /* ── Flyer lightbox (opens from center logo) ── */
+  function openFlyer() {
+    document.getElementById('flyerOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeFlyer(e) {
+    /* Ignore clicks on the image itself so it stays open */
+    if (e && e.target && e.target.tagName === 'IMG') return;
+    document.getElementById('flyerOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
   /* ── Connector canvas (lines from globe center to icons) ── */
   function drawConnectors() {

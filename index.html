@@ -102,13 +102,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      /* flex-start: content always begins at padding-top,
+         never overflows upward behind the fixed header */
+      justify-content: flex-start;
       position: relative;
       overflow: hidden;
-      /* Clear the fixed header (~88px) and leave breathing room */
-      padding-top: 6rem;
-      padding-bottom: 2rem;
-      gap: 0.4rem;
+      padding-top: 5.5rem;   /* safely below the ~80px fixed header */
+      padding-bottom: 5rem;  /* room for the absolute scroll-hint */
+      gap: 0.5rem;
     }
 
     /* Star-field background */
@@ -170,8 +171,10 @@
     ══════════════════════════════════════ */
     .globe-wrapper {
       position: relative;
-      width: min(460px, 72vw);
-      height: min(460px, 72vw);
+      /* Three-way min: px cap, vw cap, vh cap.
+         The vh cap prevents the globe from overflowing on short screens. */
+      width:  min(420px, 64vw, 54vh);
+      height: min(420px, 64vw, 54vh);
       margin: 0 auto;
       z-index: 2;
     }
@@ -275,34 +278,29 @@
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 40%; height: 40%;
+      width: 82%; height: 82%;
       z-index: 6;
       border: none;
       background: transparent;
       padding: 0;
       cursor: pointer;
-      /* Clip to a perfect circle — removes all square corners of the PNG */
-      border-radius: 50%;
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      /* screen blend makes the black background of the PNG invisible */
-      mix-blend-mode: screen;
       animation: logoFloat 5s ease-in-out infinite;
     }
     .globe-logo-btn img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      /* Boost contrast so any near-black fringe fully disappears */
-      filter: brightness(1.15) contrast(1.1) drop-shadow(0 0 10px rgba(0,229,255,0.5));
+      object-fit: contain;
+      /* SVG is natively transparent — just add a soft glow */
+      filter: drop-shadow(0 0 10px rgba(0,229,255,0.45));
       transition: filter 0.4s ease, transform 0.4s ease;
       pointer-events: none;
     }
     .globe-logo-btn:hover img {
-      filter: brightness(1.25) contrast(1.1) drop-shadow(0 0 20px rgba(0,229,255,0.9));
-      transform: scale(1.08);
+      filter: drop-shadow(0 0 20px rgba(0,229,255,0.9));
+      transform: scale(1.06);
     }
     @keyframes logoFloat {
       0%, 100% { transform: translate(-50%, -51%); }
@@ -936,7 +934,7 @@
 
     @media (max-width: 768px) {
       /* Hero adjustments */
-      #hero { padding-top: 5rem; padding-bottom: 3rem; gap: 0.3rem; }
+      #hero { padding-top: 5rem; padding-bottom: 5rem; gap: 0.4rem; }
 
       .globe-wrapper {
         width: min(380px, 88vw);
@@ -1106,7 +1104,7 @@
 
     <!-- Center logo — opens flyer with zoom animation -->
     <button class="globe-logo-btn" onclick="openFlyer()" aria-label="Άνοιγμα flyer">
-      <img src="assets/newlogo.png" alt="NEXT ERA" />
+      <img src="assets/logoplanet.svg" alt="NEXT ERA" />
     </button>
 
     <!-- 6 Connector lines (drawn via JS) -->

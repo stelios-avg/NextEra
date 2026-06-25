@@ -275,16 +275,15 @@
     /* ── Center logo button — lives inside .globe so border-radius clips it ── */
     .globe-logo-btn {
       position: absolute;
-      inset: 0;           /* fills the entire globe circle */
+      inset: 0;
       border: none;
       background: transparent;
-      padding: 8%;        /* breathing room so logo doesn't touch the edge */
+      padding: 8%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 2;
-      animation: logoFloat 5s ease-in-out infinite;
     }
     .globe-logo-btn img {
       width: 100%;
@@ -293,14 +292,14 @@
       filter: drop-shadow(0 0 10px rgba(0,229,255,0.5));
       transition: filter 0.4s ease, transform 0.4s ease;
       pointer-events: none;
+      animation: logoFloat 5s ease-in-out infinite;
     }
     .globe-logo-btn:hover img {
       filter: drop-shadow(0 0 22px rgba(0,229,255,0.95));
-      transform: scale(1.07);
     }
     @keyframes logoFloat {
-      0%, 100% { transform: translate(-50%, -51%); }
-      50%       { transform: translate(-50%, -49%); }
+      0%, 100% { transform: translateY(-3px) scale(1); }
+      50%       { transform: translateY(3px) scale(1.03); }
     }
 
     /* ══════════════════════════════════════

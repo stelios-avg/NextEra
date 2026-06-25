@@ -277,32 +277,28 @@
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 42%; height: 42%;
+      width: 45%; height: 45%;
       z-index: 6;
       border: none;
       background: transparent;
       padding: 0;
       cursor: pointer;
-      /* Clip to circle to remove PNG square corners */
-      border-radius: 50%;
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      /* screen blend erases the black background of the PNG */
-      mix-blend-mode: screen;
+      /* No blend-mode needed — SVG is natively transparent (works on iOS Safari) */
       animation: logoFloat 5s ease-in-out infinite;
     }
     .globe-logo-btn img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      filter: brightness(1.15) contrast(1.1) drop-shadow(0 0 10px rgba(0,229,255,0.5));
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(0,229,255,0.5));
       transition: filter 0.4s ease, transform 0.4s ease;
       pointer-events: none;
     }
     .globe-logo-btn:hover img {
-      filter: brightness(1.25) contrast(1.1) drop-shadow(0 0 20px rgba(0,229,255,0.9));
+      filter: drop-shadow(0 0 20px rgba(0,229,255,0.9));
       transform: scale(1.08);
     }
     @keyframes logoFloat {
@@ -1106,7 +1102,7 @@
 
     <!-- Center logo — opens flyer with zoom animation -->
     <button class="globe-logo-btn" onclick="openFlyer()" aria-label="Άνοιγμα flyer">
-      <img src="assets/newlogo.png" alt="NEXT ERA" />
+      <img src="assets/logoplanet.svg" alt="NEXT ERA" />
     </button>
 
     <!-- 6 Connector lines (drawn via JS) -->

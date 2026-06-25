@@ -272,21 +272,18 @@
       box-shadow: 0 0 80px 40px rgba(0,180,212,0.12);
     }
 
-    /* ── Center logo button (opens flyer) ── */
+    /* ── Center logo button — lives inside .globe so border-radius clips it ── */
     .globe-logo-btn {
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 45%; height: 45%;
-      z-index: 6;
+      inset: 0;           /* fills the entire globe circle */
       border: none;
       background: transparent;
-      padding: 0;
+      padding: 8%;        /* breathing room so logo doesn't touch the edge */
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      /* No blend-mode needed — SVG is natively transparent (works on iOS Safari) */
+      z-index: 2;
       animation: logoFloat 5s ease-in-out infinite;
     }
     .globe-logo-btn img {
@@ -298,8 +295,8 @@
       pointer-events: none;
     }
     .globe-logo-btn:hover img {
-      filter: drop-shadow(0 0 20px rgba(0,229,255,0.9));
-      transform: scale(1.08);
+      filter: drop-shadow(0 0 22px rgba(0,229,255,0.95));
+      transform: scale(1.07);
     }
     @keyframes logoFloat {
       0%, 100% { transform: translate(-50%, -51%); }
@@ -1097,13 +1094,12 @@
     <!-- Outer halo -->
     <div class="globe-halo"></div>
 
-    <!-- Globe -->
-    <div class="globe"></div>
-
-    <!-- Center logo — opens flyer with zoom animation -->
-    <button class="globe-logo-btn" onclick="openFlyer()" aria-label="Άνοιγμα flyer">
-      <img src="assets/logoplanet.svg" alt="NEXT ERA" />
-    </button>
+    <!-- Globe (logo lives inside so it's clipped to the circle) -->
+    <div class="globe">
+      <button class="globe-logo-btn" onclick="openFlyer()" aria-label="Άνοιγμα flyer">
+        <img src="assets/newlogo_transparent.png" alt="NEXT ERA" />
+      </button>
+    </div>
 
     <!-- 6 Connector lines (drawn via JS) -->
     <canvas id="connectorCanvas" style="position:absolute;inset:0;pointer-events:none;z-index:3;"></canvas>

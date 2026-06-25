@@ -154,17 +154,6 @@
       background-clip: text;
       filter: drop-shadow(0 0 20px rgba(0,229,255,0.5));
     }
-    .hero-subtitle {
-      font-size: 0.7rem;
-      letter-spacing: 6px;
-      color: rgba(255,255,255,0.45);
-      text-transform: uppercase;
-      margin-top: 0.3rem;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-
     /* ══════════════════════════════════════
        GLOBE + CIRCULAR ICONS
     ══════════════════════════════════════ */
@@ -174,7 +163,7 @@
          The vh cap prevents the globe from overflowing on short screens. */
       width:  min(420px, 64vw, 54vh);
       height: min(420px, 64vw, 54vh);
-      margin: 0 auto;
+      margin: 1.25rem auto 0;
       z-index: 2;
     }
 
@@ -422,7 +411,12 @@
       text-transform: uppercase;
       text-align: center;
       max-width: 70px;
+      line-height: 1.25;
       transition: color 0.3s;
+    }
+    .icon-label-wide {
+      max-width: 120px;
+      letter-spacing: 0.6px;
     }
     .service-icon:hover .icon-label { color: var(--cyan); }
 
@@ -937,6 +931,7 @@
       .icon-btn      { width: 48px; height: 48px; }
       .icon-btn svg  { width: 20px; height: 20px; }
       .icon-label    { font-size: 0.46rem; max-width: 56px; letter-spacing: 1px; }
+      .icon-label-wide { max-width: 96px; letter-spacing: 0.5px; }
 
       .service-section { padding: 4rem 1.25rem; }
       .service-card { padding: 2rem 1.5rem; }
@@ -1023,10 +1018,10 @@
   <nav class="nav-links">
     <a href="#strategy"  class="nav-link">Στρατηγική ψηφιακής παρουσίας</a>
     <a href="#social"    class="nav-link">Social</a>
-    <a href="#corporate" class="nav-link">Επικοινωνία</a>
-    <a href="#politics"  class="nav-link">Πολιτική</a>
-    <a href="#web"       class="nav-link">Web</a>
-    <a href="#drone"     class="nav-link">Drone</a>
+    <a href="#corporate" class="nav-link">Εταιρική Επικοινωνία</a>
+    <a href="#politics"  class="nav-link">Υποστήριξη πολιτικών εκστρατειών</a>
+    <a href="#web"       class="nav-link">Ανάπτυξη ιστοσελίδων</a>
+    <a href="#drone"     class="nav-link">Υπηρεσίες Drone</a>
     <a href="#contact"   class="nav-cta">Επικοινωνία</a>
   </nav>
 
@@ -1048,12 +1043,12 @@
     Πίσω
   </button>
 
-  <a href="#strategy"  onclick="toggleMobileNav()">Στρατηγική</a>
-  <a href="#social"    onclick="toggleMobileNav()">Social Media</a>
+  <a href="#strategy"  onclick="toggleMobileNav()">Στρατηγική ψηφιακής παρουσίας</a>
+  <a href="#social"    onclick="toggleMobileNav()">Διαχείριση Social Media</a>
   <a href="#corporate" onclick="toggleMobileNav()">Εταιρική Επικοινωνία</a>
-  <a href="#politics"  onclick="toggleMobileNav()">Πολιτική</a>
-  <a href="#web"       onclick="toggleMobileNav()">Web</a>
-  <a href="#drone"     onclick="toggleMobileNav()">Drone</a>
+  <a href="#politics"  onclick="toggleMobileNav()">Υποστήριξη πολιτικών εκστρατειών</a>
+  <a href="#web"       onclick="toggleMobileNav()">Ανάπτυξη ιστοσελίδων</a>
+  <a href="#drone"     onclick="toggleMobileNav()">Υπηρεσίες Drone</a>
   <a href="#contact"   class="mobile-cta" onclick="toggleMobileNav()">Επικοινωνία →</a>
 
   <!-- Watermark -->
@@ -1079,7 +1074,6 @@
     <h1 class="hero-title">
       <span class="ne">NEXT</span>&nbsp;<span style="color:#fff;">ERA</span>
     </h1>
-    <p class="hero-subtitle">media &amp; communication</p>
   </div>
 
   <!-- Globe + Icons -->
@@ -1112,7 +1106,7 @@
           <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
         </svg>
       </div>
-      <span class="icon-label">Στρατηγική</span>
+      <span class="icon-label icon-label-wide">Στρατηγική ψηφιακής παρουσίας</span>
     </a>
 
     <!-- i=1 -30°: (86.4%, 27%) -->
@@ -1123,7 +1117,7 @@
           <line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="13" y2="13"/>
         </svg>
       </div>
-      <span class="icon-label">Social Media</span>
+      <span class="icon-label icon-label-wide">Διαχείριση Social Media</span>
     </a>
 
     <!-- i=2 +30°: (86.4%, 73%) -->
@@ -1135,7 +1129,7 @@
           <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
       </div>
-      <span class="icon-label">Επικοινωνία</span>
+      <span class="icon-label icon-label-wide">Εταιρική Επικοινωνία</span>
     </a>
 
     <!-- i=3 +90°: (50%, 95%) -->
@@ -1154,7 +1148,7 @@
           <path d="M269.116,422.04L269.116,422.04h-32V293.145h67.237h0c5.521,0,10-4.476,10-10c0-5.525-4.479-10-10-10h0c-3.887,0-124.895,0-128.154,0c6.442-1.815,10.977-7.923,10.543-14.874c-0.499-8.005-7.393-14.103-15.397-13.591l-50.138,3.125l-28.452-37.523l22.731,17.762l-1.272-19.175c-0.792-11.932-11.107-20.964-23.039-20.172l-38.53,2.556c-11.932,0.792-20.964,11.107-20.172,23.039l6.698,100.961c-0.625,7.213,3.29,14.549,11.041,17.741H22.078V223.031c0-6.097-4.942-11.039-11.039-11.039S0,216.934,0,223.031c0,1.389,0,202.913,0,209.181c0,6.097,4.942,11.039,11.039,11.039s11.039-4.942,11.039-11.039v-33.05h43.8l20.034-22.078H22.078v-22.011c11.154,0,73.713,0,81.742,0l15.119,6.227l-49.935,55.029c-6.468,7.127-5.934,18.149,1.194,24.617c7.139,6.477,18.159,5.922,24.616-1.195l66.609-73.405c3.815-4.204,5.344-10.003,4.096-15.542c-1.248-5.538-5.115-10.122-10.364-12.283L87.09,310.488l34.339,7.129l39.001,8.097c3.286,0.682,6.316,1.919,9.011,3.592l-3.88-16.536c-1.811-7.715-8.754-13.445-16.966-13.445h-16.111h-12.268l-0.516-7.775c-3.994,0.249-2.111,0.132-9.622,0.6c-8.381,0.522-15.845-4.466-18.881-11.818l-21.584-52.5l33.156,43.725c2.968,3.914,7.677,6.023,12.476,5.72l29.937-1.866c-2.235,1.834-3.662,4.617-3.662,7.733c0,2.666,1.05,5.082,2.75,6.874l0,0c1.822,1.921,4.393,3.126,7.25,3.126h0h65.597V422.04h-25.915l-3.52-15l-9.269-39.499c-1.833,2.963-0.481,1.225-28.315,31.898l7.646,32.582c2.19,9.332,11.574,15.186,20.947,12.984c2.528-0.593,4.785-1.722,6.707-3.219c1.835,0.415-5.191,0.253,83.718,0.253h0c5.521,0,10-4.476,10-10C279.116,426.515,274.637,422.04,269.116,422.04z"/>
         </svg>
       </div>
-      <span class="icon-label">Πολιτική</span>
+      <span class="icon-label icon-label-wide">Υποστήριξη πολιτικών εκστρατειών</span>
     </a>
 
     <!-- i=4 +150°: (13.6%, 73%) -->
@@ -1163,7 +1157,7 @@
         <svg viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
           <path d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256S397.385,0,256,0z M418.275,146h-46.667c-5.365-22.513-12.324-43.213-20.587-61.514c15.786,8.776,30.449,19.797,43.572,32.921C403.463,126.277,411.367,135.854,418.275,146z M452,256c0,17.108-2.191,33.877-6.414,50h-64.034c1.601-16.172,2.448-32.887,2.448-50s-0.847-33.828-2.448-50h64.034C449.809,222.123,452,238.892,452,256z M256,452c-5.2,0-21.048-10.221-36.844-41.813c-6.543-13.087-12.158-27.994-16.752-44.187h107.191c-4.594,16.192-10.208,31.1-16.752,44.187C277.048,441.779,261.2,452,256,452z M190.813,306c-1.847-16.247-2.813-33.029-2.813-50s0.966-33.753,2.813-50h130.374c1.847,16.247,2.813,33.029,2.813,50s-0.966,33.753-2.813,50H190.813z M60,256c0-17.108,2.191-33.877,6.414-50h64.034c-1.601,16.172-2.448,32.887-2.448,50s0.847,33.828,2.448,50H66.414C62.191,289.877,60,273.108,60,256z M256,60c5.2,0,21.048,10.221,36.844,41.813c6.543,13.087,12.158,27.994,16.752,44.187H202.404c4.594-16.192,10.208-31.1,16.752-44.187C234.952,70.221,250.8,60,256,60z M160.979,84.486c-8.264,18.301-15.222,39-20.587,61.514H93.725c6.909-10.146,14.812-19.723,23.682-28.593C130.531,104.283,145.193,93.262,160.979,84.486z M93.725,366h46.667c5.365,22.513,12.324,43.213,20.587,61.514c-15.786-8.776-30.449-19.797-43.572-32.921C108.537,385.723,100.633,376.146,93.725,366z M351.021,427.514c8.264-18.301,15.222-39,20.587-61.514h46.667c-6.909,10.146-14.812,19.723-23.682,28.593C381.469,407.717,366.807,418.738,351.021,427.514z"/>        </svg>
       </div>
-      <span class="icon-label">Web</span>
+      <span class="icon-label icon-label-wide">Ανάπτυξη ιστοσελίδων</span>
     </a>
 
     <!-- i=5 +210°: (13.6%, 27%) -->
@@ -1177,7 +1171,7 @@
           <path d="M191.759,305.269c-3.059,1.701-1.396,2.716-0.251,5.774c1.242,3.31,2.113,6.743,2.67,10.236c3.493,22.022-7.186,43.571-23.189,58.201c-30.954,28.299-84.006,35.935-118.743,10.008C35.15,376.734,25.89,355.896,29.49,334.675c3.692-21.763,19.177-39.734,37.605-50.94c17.941-10.908,39.421-16.133,60.36-14.676c5.385,0.397,10.74,1.205,15.98,2.517c4.523,1.13,3.882,0.931,7.147-1.243c5.271-3.516,9.786-10.153,13.677-15.058c-13.15-4.584-27.018-6.788-40.939-6.788c-43.503,0-89.407,21.152-111.917,59.506c-24.836,42.311-7.468,92.343,36.202,113.152c40.489,19.298,91.07,12.922,128.004-11.427c37.102-24.448,62.115-72.922,38.064-115.121C206.153,297.686,198.861,301.318,191.759,305.269z"/>
         </svg>
       </div>
-      <span class="icon-label">Drone</span>
+      <span class="icon-label icon-label-wide">Υπηρεσίες Drone</span>
     </a>
 
   </div><!-- /.globe-wrapper -->
@@ -1460,12 +1454,12 @@
   </div>
 
   <nav class="footer-links">
-    <a href="#strategy">Στρατηγική</a>
-    <a href="#social">Social Media</a>
-    <a href="#corporate">Επικοινωνία</a>
-    <a href="#politics">Πολιτική</a>
-    <a href="#web">Web</a>
-    <a href="#drone">Drone</a>
+    <a href="#strategy">Στρατηγική ψηφιακής παρουσίας</a>
+    <a href="#social">Διαχείριση Social Media</a>
+    <a href="#corporate">Εταιρική Επικοινωνία</a>
+    <a href="#politics">Υποστήριξη πολιτικών εκστρατειών</a>
+    <a href="#web">Ανάπτυξη ιστοσελίδων</a>
+    <a href="#drone">Υπηρεσίες Drone</a>
   </nav>
 
   <p>© 2026 Next Era Media &amp; Communication. All rights reserved.</p>
